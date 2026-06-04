@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARMORAI — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020406;
+    color: #c8dce8;
+    font-family: 'DM Sans', sans-serif;
+  }
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(2,4,6,0.98);
+    border-bottom: 1px solid rgba(0,212,255,0.1);
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 6px;
+    color: #e8f4ff;
+    text-decoration: none;
+  }
+  .nav-logo span { color: #00d4ff; }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a, .logout-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #4a6478;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .nav-links a:hover, .logout-btn:hover { color: #00d4ff; }
+  .dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 60px 60px;
+  }
+  .card {
+    background: #0d1e2e;
+    border: 1px solid #0f2d45;
+    padding: 28px;
+    margin-bottom: 30px;
+  }
+  .btn-primary {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    background: #00d4ff;
+    color: #020406;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+  }
+  footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid #0f2d45;
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ARMOR<span>AI</span></a>
+  <ul class="nav-links">
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="profile.html">Profile</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+  </ul>
+  <button id="logoutBtn" class="logout-btn">Logout</button>
+</nav>
+
+<div class="dashboard-container">
+  <div class="card">
+    <h2>Welcome to your Dashboard</h2>
+    <p>You are logged in as <span id="userEmail"></span></p>
+  </div>
+  <div class="card">
+    <h3><i class="fas fa-briefcase"></i> Job Simulations</h3>
+    <p>Test your skills with real‑world tech assessments. Earn verifiable certificates.</p>
+    <a href="certifications.html" class="btn-primary">Start a Job Simulation →</a>
+  </div>
+</div>
+
+<footer>© 2026 Armorai — Autonomous Cyber Defense Platform</footer>
+
+<script>
+  const currentUser = localStorage.getItem('armorai_current_user');
+  if (!currentUser) window.location.href = 'login.html';
+  document.getElementById('userEmail').innerText = currentUser;
+  document.getElementById('logoutBtn').onclick = () => {
+    localStorage.removeItem('armorai_current_user');
+    window.location.href = 'login.html';
+  };
+</script>
+</body>
+</html>
